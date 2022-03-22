@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;1,100&display=swap');
+
+$primary-color: #7c88ca;
+
+:root {
+	--primary-color-red: #ac4542;
+	--primary-color-grey: #d4d4d4;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -9,3 +16,4 @@
 @import url(./components/inputForm.scss);
 @import url(./components/task.scss);
 @import url(./containers/tasks.scss);
+

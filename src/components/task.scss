@@ -7,8 +7,20 @@
 	justify-content: space-between;
 	padding: 10px;
 	font-size: 15px;
-	border: 1px solid grey;
+	border: 1px solid var(--primary-color-grey);
 }
 .strike {
   text-decoration: line-through;
+}
+.task-del-btn {
+	background-color: var(--primary-color-red);
+	color: rgb(255, 255, 255);
+	border-radius: 3px;
+	border: none;
+	padding: 3px;
+	cursor: pointer;
+}
+.task-del-btn:active {
+	color: var(--primary-color-grey);
+	transition: all .3s ease;
 }

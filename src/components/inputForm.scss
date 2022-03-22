@@ -1,18 +1,33 @@
-.input-form {
+.input-form-wrapper {
   margin-top: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
-	input {
+	.input-form {
 		width: 300px;
 		height: 40px;
 		padding-left: 10px;
 		font-size: 20px;
-		color: rgb(204, 203, 203);
+		border: none;
+		border: 1px solid var(--primary-color-grey);
+		border-radius: 3px;
 	}
-	button {
+	.input-form::placeholder {
+		color: var(--primary-color-grey);
+	}
+	.input-form:focus {
+		outline: none;
+		border: 1px solid var(--primary-color-grey);
+	}
+	.submit-form-btn {
 		height: 38px;
 		padding: 4px;
+		border: none;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+	.submit-form-btn:active {
+		background-color: aqua;
 	}
 }
