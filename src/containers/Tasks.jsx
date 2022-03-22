@@ -7,8 +7,8 @@ const Tasks = () => {
 
   return (
     <div className="tasks">
-      {tasks.map((el) => (
-        <Task key={el.title} title={el.title} />
+      {tasks.map((el, idx) => (
+        <Task key={idx} title={el.title} />
       ))}
     </div>
   );
