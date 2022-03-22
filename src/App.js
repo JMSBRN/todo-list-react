@@ -16,9 +16,6 @@ function App() {
           rel="noopener noreferrer"
         >
          Test Publish
-         Test Publish
-         Test Publish
-         Test Publish
         </a>
       </header>
     </div>
