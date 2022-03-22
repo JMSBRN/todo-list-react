@@ -24,10 +24,11 @@
 		height: 38px;
 		padding: 4px;
 		border: none;
+		border: 1px solid var(--primary-color-grey);
 		border-radius: 3px;
 		cursor: pointer;
 	}
 	.submit-form-btn:active {
-		background-color: aqua;
+		background-color: rgb(255, 255, 255);
 	}
 }

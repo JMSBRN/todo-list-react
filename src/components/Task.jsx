@@ -10,7 +10,10 @@ const Task = ({title}) => {
 	return (
 		<div className='task'>
 			<div onClick={toggleTitleLine} className="title">{title}</div>
-			<button className='task-del-btn' >Delete</button>
+			<div className="task-btns-wrapper">
+				<button className='task-edit-btn' >Edit</button>
+				<button className='task-del-btn' >Delete</button>
+			</div>
 		</div>
 	);
 };

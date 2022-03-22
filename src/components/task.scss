@@ -10,17 +10,22 @@
 	border: 1px solid var(--primary-color-grey);
 }
 .strike {
-  text-decoration: line-through;
+  text-decoration: line-through 2px solid rgb(207, 24, 24);
 }
-.task-del-btn {
-	background-color: var(--primary-color-red);
-	color: rgb(255, 255, 255);
+.task-btns-wrapper {
+	width: 100px;
+	display: flex;
+	justify-content: space-around;
+}
+.task-del-btn,
+.task-edit-btn {
 	border-radius: 3px;
+	padding: 4px;
 	border: none;
-	padding: 3px;
+	border: 1px solid var(--primary-color-grey);
 	cursor: pointer;
 }
-.task-del-btn:active {
-	color: var(--primary-color-grey);
-	transition: all .3s ease;
+.task-del-btn:active,
+.task-edit-btn:active {
+	background-color: rgb(255, 255, 255);
 }

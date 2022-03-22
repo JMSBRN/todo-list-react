@@ -1,15 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Task from "../components/Task";
+import {Context} from '../context';
 
 const Tasks = () => {
+ const {tasks} = useContext(Context);
 
-  const tasks = [
-    {title: 'task- 1'},
-    {title: 'task- 2'},
-    {title: 'task- 3'},
-    {title: 'task- 4'},
-    {title: 'task- 5'}
-  ];
 
   return (
     <div className="tasks">
