@@ -1,0 +1,18 @@
+.input-form {
+  margin-top: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	input {
+		width: 300px;
+		height: 40px;
+		padding-left: 10px;
+		font-size: 20px;
+		color: rgb(204, 203, 203);
+	}
+	button {
+		height: 38px;
+		padding: 4px;
+	}
+}
