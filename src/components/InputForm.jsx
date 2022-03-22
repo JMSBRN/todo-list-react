@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Context } from '../context';
 
 const InputForm = ({ textInBtn }) => {
+	const {handleAddTask, getTitleFromInput} = useContext(Context);
 	return (
 		<div className='input-form-wrapper'>
-      <input className='input-form' type="text" name="" id="" placeholder='input task' />
-			<button className='submit-form-btn' type="submit">{textInBtn}</button>
+      <input onChange={getTitleFromInput} className='input-form' type="text" name="" id="" placeholder='input task' />
+			<button onClick={handleAddTask} className='submit-form-btn' type="submit">{textInBtn}</button>
 		</div>
 	);
 };

@@ -6,13 +6,24 @@ import { Context } from './context';
 
 function App() {
 
-  const [tasks, setTasks] = useState([{title: ''}]);
+  const [tasks, setTasks] = useState([]);
+  const [title, setTitle] = useState('');
+
+  const handleAddTask = ()=> {
+    if(title.length >0){
+      setTasks([...tasks, {title: `${title}`}]);
+    }
+  };
+  const getTitleFromInput = (e)=> {
+     setTitle(e.target.value);
+  };
 
   return (
     <div className="App">
       <Context.Provider value={{
         tasks,
-        setTasks
+        handleAddTask,
+        getTitleFromInput
       }}>
       <Main />
       </Context.Provider>
