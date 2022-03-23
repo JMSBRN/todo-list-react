@@ -33,9 +33,11 @@ function App() {
   const handleUpdateTask = (e) => {
     let elIndexUpdate = e.target.dataset.num;
     let curValueFromInput = document.querySelector('.input-form').value;
-    tasks[elIndexUpdate].title = curValueFromInput;
-    inputTask.value = '';
-    document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
+    if(title.length > 0) {
+      tasks[elIndexUpdate].title = curValueFromInput;
+      inputTask.value = '';
+      document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
+    }
   };
   return (
     <div className="App">
