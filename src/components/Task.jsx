@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Context } from '../context';
 
 const Task = ({title,index }) => {
-	const {handlDeleteTask} = useContext(Context);
+	const {handlDeleteTask, handleEditTask, handleUpdateTask} = useContext(Context);
 	const toggleTitleLine = (e)=> {
 		if(e.target){
       e.target.classList.toggle('strike');
@@ -11,9 +11,10 @@ const Task = ({title,index }) => {
 	};
 	return (
 		<div className='task'>
-			<div onClick={toggleTitleLine} className="title">{title}</div>
+			<div onClick={toggleTitleLine} className={`title-${index}`}>{title}</div>
 			<div className="task-btns-wrapper">
-				<button className='task-edit-btn' >Edit</button>
+				<button data-num={index} onClick={handleUpdateTask} className='task-update-btn' >update</button>
+				<button data-num={index} onClick={handleEditTask} className='task-edit-btn' >Edit</button>
 				<button data-num={index} onClick={handlDeleteTask} className='task-del-btn' >Delete</button>
 			</div>
 		</div>
