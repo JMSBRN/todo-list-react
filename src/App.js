@@ -6,15 +6,15 @@ import { Context } from './context';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [title, setTitle] = useState(' ');
-
+  const [title, setTitle] = useState('');
+  const inputTask = document.querySelector('.input-form');
   const handleAddTask = ()=> {
     if(title.length > 0){
       if(tasks.length < 6){
         setTasks([...tasks, {title: `${title}`}]);
       }
     }
-    document.querySelector('.input-form').value = '';
+    inputTask.value = '';
     setTitle('');
   };
   const getTitleFromInput = (e)=> {
@@ -28,13 +28,13 @@ function App() {
   const handleEditTask = (e) => {
     let elIndex = JSON.parse(e.target.dataset.num);
     tasks[elIndex].title;
-    document.querySelector('.input-form').value = tasks[elIndex].title;
+    inputTask.value = tasks[elIndex].title;
   };
   const handleUpdateTask = (e) => {
     let elIndexUpdate = e.target.dataset.num;
     let curValueFromInput = document.querySelector('.input-form').value;
     tasks[elIndexUpdate].title = curValueFromInput;
-    document.querySelector('.input-form').value = '';
+    inputTask.value = '';
     document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
   };
   return (

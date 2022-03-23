@@ -1,7 +1,7 @@
 .task {
 	position: relative;
 	margin: 10px auto;
-	width: 90%;
+	width: 95%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -13,19 +13,22 @@
   text-decoration: line-through 2px solid rgb(207, 24, 24);
 }
 .task-btns-wrapper {
-	width: 100px;
+	width: 42%;
 	display: flex;
 	justify-content: space-around;
 }
 .task-del-btn,
-.task-edit-btn {
+.task-edit-btn,
+.task-update-btn {
 	border-radius: 3px;
 	padding: 4px;
+	margin: 0 3px;
 	border: none;
 	border: 1px solid var(--primary-color-grey);
 	cursor: pointer;
 }
 .task-del-btn:active,
-.task-edit-btn:active {
+.task-edit-btn:active, 
+.task-update-btn:active {
 	background-color: rgb(255, 255, 255);
 }
