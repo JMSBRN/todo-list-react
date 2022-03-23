@@ -34,12 +34,17 @@ function App() {
   const handleUpdateTask = (e) => {
     let elIndexUpdate = e.target.dataset.num;
     let curValueFromInput = document.querySelector('.input-form').value;
+    let currentTag = document.querySelector(`.tag-${elIndexUpdate}`);
     if(title.length > 0) {
       tasks[elIndexUpdate].title = curValueFromInput;
       inputTask.value = '';
       document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
-      const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
-      document.querySelector(`.tag-${elIndexUpdate}`).textContent =tagName;
+      if (title.includes('#')){
+        const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
+        currentTag.textContent =tagName;
+      } else if(!title.includes('#')){
+        currentTag.textContent = '';
+      }
     }
   };
   return (
