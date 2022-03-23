@@ -38,6 +38,8 @@ function App() {
       tasks[elIndexUpdate].title = curValueFromInput;
       inputTask.value = '';
       document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
+      const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
+      document.querySelector(`.tag-${elIndexUpdate}`).textContent =tagName;
     }
   };
   return (

@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Tag = () => {
+import PropTypes from 'prop-types';
+
+const Tag = ({index}) => {
+
 	return (
-		<div>Tag</div>
+		<div className={`tag-${index}`}></div>
 	);
+};
+Tag.propTypes ={
+ index: PropTypes.number
 };
 
 export default Tag;

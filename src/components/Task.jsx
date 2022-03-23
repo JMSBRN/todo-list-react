@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Context } from '../context';
+import Tag from './Tag';
 
 const Task = ({title,index }) => {
 	const {handlDeleteTask, handleEditTask, handleUpdateTask} = useContext(Context);
@@ -11,6 +12,7 @@ const Task = ({title,index }) => {
 	};
 	return (
 		<div className='task'>
+			<Tag  index={index}/>
 			<div onClick={toggleTitleLine} className={`title-${index}`}>{title}</div>
 			<div className="task-btns-wrapper">
 				<button data-num={index} onClick={handleUpdateTask} className='task-update-btn' >update</button>
