@@ -13,10 +13,14 @@ function App() {
         setTasks([...tasks, {title: `${title}`}]);
       }
     }
+    document.querySelector('.input-form').value = '';
+    setTitle('');
+    
   };
   const getTitleFromInput = (e)=> {
      setTitle(e.target.value);
   };
+
   const handlDeleteTask = (e)=> {
    let elIndex = JSON.parse(e.target.dataset.num);
     const newArr = tasks.filter((el,index) => index !== elIndex);
