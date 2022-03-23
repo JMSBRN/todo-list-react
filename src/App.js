@@ -24,6 +24,7 @@ function App() {
    let elIndex = JSON.parse(e.target.dataset.num);
     const newArr = tasks.filter((el,index) => index !== elIndex);
     setTasks(newArr);
+    inputTask.value = '';
   };
   const handleEditTask = (e) => {
     let elIndex = JSON.parse(e.target.dataset.num);
