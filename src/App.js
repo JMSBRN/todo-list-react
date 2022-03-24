@@ -47,9 +47,7 @@ function App() {
     } else if(!title.includes('#')){
       currentTag.textContent = '';
     }
-    
   };
-
   const handleUpdateTask = (e) => {
     let elIndexUpdate = e.target.dataset.num;
     let curValueFromInput = document.querySelector('.input-form').value;

@@ -1,16 +1,12 @@
-import React, { useContext } from 'react';
+import React from "react";
 
-import PropTypes from 'prop-types';
-import { Context } from '../context';
-
-const Tag = ({index}) => {
- const {tagTitle} = useContext(Context);
-	return (
-		<div className={`tag-${index}`}>{tagTitle}</div>
-	);
+import PropTypes from "prop-types";
+const Tag = ({ index, tagTitle }) => {
+  return <div className={`tag-${index}`}>{tagTitle}</div>;
 };
-Tag.propTypes ={
- index: PropTypes.number,
+Tag.propTypes = {
+  index: PropTypes.number,
+  tagTitle: PropTypes.string,
 };
 
 export default Tag;
