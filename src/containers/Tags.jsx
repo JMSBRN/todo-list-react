@@ -1,23 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Tag from '../components/Tag';
+import { Context } from '../context';
 
 const Tags = () => {
-
-	const tags = [
-		{color:'red'},
-		{color:'red'},
-		{color:'red'},
-		{color:'red'},
-		{color:'red'},
-	];
+	const {tags, tagTitle} = useContext(Context);
 	return (
 		<div className='tags'>
 			{
-				tags.map((el, index) => 
-					<Tag key={index} />
+				tags.map((el,idx) => 
+					<Tag key={idx} tagTitle={tagTitle}/>
+					
 					)
 			}
-			</div>
+		</div>
 	);
 };
 

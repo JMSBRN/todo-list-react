@@ -6,19 +6,23 @@ import { Context } from './context';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [tags, setTags] = useState([]);
   const [title, setTitle] = useState('');
+  const [tagTitle, setTagTitle] = useState('');
   const inputTask = document.querySelector('.input-form');
+
   const handleAddTask = ()=> {
-    if(title.length > 0){
+    if(inputTask.value !== ''){
       if(tasks.length < 6){
         setTasks([...tasks, {title: `${title}`}]);
       }
     }
-    inputTask.value = '';
     setTitle('');
+    inputTask.value = '';
   };
   const getTitleFromInput = (e)=> {
-     setTitle(e.target.value);
+    const curTitle = e.target.value;
+     setTitle(curTitle);
   };
   const handlDeleteTask = (e)=> {
    let elIndex = JSON.parse(e.target.dataset.num);
@@ -31,26 +35,36 @@ function App() {
     tasks[elIndex].title;
     inputTask.value = tasks[elIndex].title;
   };
+  const createTag = (e)  => {
+    let elIndexUpdate = e.target.dataset.num;
+    let currentTag = document.querySelector(`.tag-${elIndexUpdate}`);
+    document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
+    if (title.includes('#')){
+      const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
+      currentTag.textContent = tagName;
+      setTags([...tags, {title: `${currentTag}`}]);
+      setTagTitle(tagName);    
+    } else if(!title.includes('#')){
+      currentTag.textContent = '';
+    }
+    
+  };
+
   const handleUpdateTask = (e) => {
     let elIndexUpdate = e.target.dataset.num;
     let curValueFromInput = document.querySelector('.input-form').value;
-    let currentTag = document.querySelector(`.tag-${elIndexUpdate}`);
     if(title.length > 0) {
       tasks[elIndexUpdate].title = curValueFromInput;
-      inputTask.value = '';
-      document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
-      if (title.includes('#')){
-        const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
-        currentTag.textContent =tagName;
-      } else if(!title.includes('#')){
-        currentTag.textContent = '';
-      }
+      createTag(e);
     }
+    inputTask.value = '';
   };
   return (
     <div className="App">
       <Context.Provider value={{
         tasks,
+        tags,
+        tagTitle,
         handleAddTask,
         getTitleFromInput,
         handlDeleteTask,
