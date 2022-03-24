@@ -35,6 +35,9 @@ function App() {
     tasks[elIndex].title;
     inputTask.value = tasks[elIndex].title;
   };
+  const uniqArrByPropName = (data, key) =>{
+  return [...new Map(data.map(el => [key(el), el])).values()];
+  };
   const createTag = (e)  => {
     let elIndexUpdate = e.target.dataset.num;
     let currentTag = document.querySelector(`.tag-${elIndexUpdate}`);
@@ -42,7 +45,9 @@ function App() {
     if (title.includes('#')){
       const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
       currentTag.textContent = tagName;
-      setTags([...tags, {title: `${tagName}`}]);
+      const currArrTags = [...tags, {title: `${tagName}`}];
+      const uniqArr = uniqArrByPropName(currArrTags, it => it.title);
+      setTags(uniqArr);
       setTagTitle(tagName);    
     } else if(!title.includes('#')){
       currentTag.textContent = '';
