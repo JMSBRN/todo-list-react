@@ -42,7 +42,7 @@ function App() {
     if (title.includes('#')){
       const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
       currentTag.textContent = tagName;
-      setTags([...tags, {title: `${currentTag}`}]);
+      setTags([...tags, {title: `${tagName}`}]);
       setTagTitle(tagName);    
     } else if(!title.includes('#')){
       currentTag.textContent = '';
