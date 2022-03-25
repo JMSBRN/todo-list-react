@@ -46,7 +46,7 @@ function App() {
      const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
       currentTag.textContent = tagName;
       const currArrTags = [...tags, {tagName: `${tagName}`}];
-      const uniqArr = uniqArrByPropName(currArrTags, it => it.title);
+      const uniqArr = uniqArrByPropName(currArrTags, it => it.tagName);
       setTags(uniqArr);
       setTagTitle(tagName);  
       setTasks(tasks.map(el => el.tag == '' ? {...el, tag: `${tagName}` } : el));  
