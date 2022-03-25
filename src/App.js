@@ -56,7 +56,7 @@ function App() {
   const handleUpdateTask = (e) => {
     let elIndexUpdate = e.target.dataset.num;
     let curValueFromInput = document.querySelector('.input-form').value;
-    if(title.length > 0) {
+    if(!inputTask.value == '') {
       tasks[elIndexUpdate].title = curValueFromInput;
       createTag(e);
     }
