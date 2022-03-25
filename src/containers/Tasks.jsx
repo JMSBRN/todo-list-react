@@ -5,7 +5,7 @@ import Tags from "./Tags";
 
 const Tasks = () => {
   const { tasks } = useContext(Context);
-
+  console.log(tasks);
   return (
     <div className="tasks">
       <Tags />

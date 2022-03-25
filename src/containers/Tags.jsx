@@ -6,7 +6,7 @@ const Tags = () => {
 	const {tags} = useContext(Context);
 	return (
 		<div className='tags'>
-			{tags.map((el,idx) => <Tag key={idx} index={`tags-${idx}`} tagTitle={el.title}/>)}
+			{tags.map((el,idx) => <Tag key={idx} index={`tags-${idx}`} tagTitle={el.tagName}/>)}
 		</div>
 	);
 };

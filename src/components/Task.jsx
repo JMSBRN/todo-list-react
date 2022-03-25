@@ -12,7 +12,7 @@ const Task = ({title,index }) => {
 	};
 	return (
 		<div className='task'>
-			<Tag index={index}/>
+			<Tag indexForClassName={JSON.stringify(index)}/>
 			<div onClick={toggleTitleLine} className={`title-${index}`}>{title}</div>
 			<div className="task-btns-wrapper">
 				<button data-num={index} onClick={handleUpdateTask} className='task-update-btn' >update</button>
