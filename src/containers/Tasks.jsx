@@ -4,8 +4,16 @@ import { Context } from "../context";
 import Tags from "./Tags";
 
 const Tasks = () => {
-  const { tasks } = useContext(Context);
-  console.log(tasks);
+  const { tasks, selectValue, sortArrByConditions } = useContext(Context);
+
+  if(selectValue == 'a-z') {
+    sortArrByConditions(tasks, (a,b) => a.tag > b.tag);
+    console.log(tasks);
+  }else if (selectValue == 'z-a') {
+    sortArrByConditions(tasks, (a,b) => a.tag < b.tag);
+    console.log(tasks);
+  }
+
   return (
     <div className="tasks">
       <Tags />

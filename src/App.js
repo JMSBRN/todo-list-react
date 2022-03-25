@@ -10,7 +10,13 @@ function App() {
   const [title, setTitle] = useState('');
   const [tagTitle, setTagTitle] = useState('');
   const inputTask = document.querySelector('.input-form');
+  const [selectValue, setSelectValue] = useState('');
   
+  
+  const sortArrByConditions = (arr,func) => {
+    arr.sort((a, b) => func(a, b)? 1: func(b, a)? -1: 0);
+		return arr;
+ };
   const getTitleFromInput = (e)=> {
     const curTitle = e.target.value;
      setTitle(curTitle);
@@ -63,18 +69,23 @@ function App() {
     }
     inputTask.value = '';
   };
-
+  const nandleSelectChange = (e) => {
+    setSelectValue(e.target.value);
+  };
   return (
     <div className="App">
       <Context.Provider value={{
         tasks,
         tags,
         tagTitle,
+        sortArrByConditions,
         handleAddTask,
         getTitleFromInput,
         handlDeleteTask,
         handleEditTask,
-        handleUpdateTask
+        handleUpdateTask,
+        nandleSelectChange,
+        selectValue
       }}>
       <Main />
       </Context.Provider>

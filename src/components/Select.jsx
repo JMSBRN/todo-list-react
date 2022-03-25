@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
+import { Context } from "../context";
 
-const Select = ({value, onChange, labelTitle}) => {
+const Select = ({ labelTitle}) => {
+
+  const {selectValue  ,nandleSelectChange} = useContext(Context);
+
   return (
     <div className="filter">
       <label htmlFor="select-sort-tags">{labelTitle}</label>
-      <select id="select-sort-tags" value={value} onChange={onChange}>
+      <select id="select-sort-tags" value={selectValue}  onChange={nandleSelectChange}>
         <option  >
           --choose an option--
         </option>
