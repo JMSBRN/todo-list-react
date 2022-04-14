@@ -8,17 +8,15 @@ const Tasks = () => {
 
   if(selectValue == 'a-z') {
     sortArrByConditions(tasks, (a,b) => a.tag > b.tag);
-    console.log(tasks);
   }else if (selectValue == 'z-a') {
     sortArrByConditions(tasks, (a,b) => a.tag < b.tag);
-    console.log(tasks);
   }
 
   return (
     <div className="tasks">
       <Tags />
       {tasks.map((el, idx) => (
-        <Task index={idx} key={idx} title={el.title} />
+        <Task tagTitle={el.tag} index={idx} key={idx} title={el.title} />
       ))}
     </div>
   );

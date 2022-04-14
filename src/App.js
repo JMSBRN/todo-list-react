@@ -12,7 +12,6 @@ function App() {
   const inputTask = document.querySelector('.input-form');
   const [selectValue, setSelectValue] = useState('');
   
-  
   const sortArrByConditions = (arr,func) => {
     arr.sort((a, b) => func(a, b)? 1: func(b, a)? -1: 0);
 		return arr;
@@ -35,6 +34,10 @@ function App() {
     const newArr = tasks.filter((el,index) => index !== elIndex);
     setTasks(newArr);
     inputTask.value = '';
+    if(newArr.length <= 0){
+      const arr = [];
+      setTags(arr);
+    }
   };
   const handleEditTask = (e) => {
     let elIndex = JSON.parse(e.target.dataset.num);
@@ -55,16 +58,17 @@ function App() {
       const uniqArr = uniqArrByPropName(currArrTags, it => it.tagName);
       setTags(uniqArr);
       setTagTitle(tagName);  
-      setTasks(tasks.map(el => el.tag == '' ? {...el, tag: `${tagName}` } : el));  
+      setTasks(tasks.map((el,i) => i == elIndexUpdate ? {...el, tag: `${tagName}` } : el));  
     } else if(!title.includes('#')){
       currentTag.textContent = '';
     }
   };
   const handleUpdateTask = (e) => {
-    let elIndexUpdate = e.target.dataset.num;
+    let ecurDatasetNum = e.target.dataset.num;
+    console.log(ecurDatasetNum);
     let curValueFromInput = document.querySelector('.input-form').value;
     if(!inputTask.value == '') {
-      tasks[elIndexUpdate].title = curValueFromInput;
+      tasks[ecurDatasetNum].title = curValueFromInput;
       createTag(e);
     }
     inputTask.value = '';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Context } from '../context';
 import Tag from './Tag';
 
-const Task = ({title,index }) => {
+const Task = ({title,index, tagTitle }) => {
 	const {handlDeleteTask, handleEditTask, handleUpdateTask} = useContext(Context);
 	const toggleTitleLine = (e)=> {
 		if(e.target){
@@ -12,7 +12,7 @@ const Task = ({title,index }) => {
 	};
 	return (
 		<div className='task'>
-			<Tag indexForClassName={JSON.stringify(index)}/>
+			<Tag tagTitle={tagTitle} indexForClassName={JSON.stringify(index)}/>
 			<div onClick={toggleTitleLine} className={`title-${index}`}>{title}</div>
 			<div className="task-btns-wrapper">
 				<button data-num={index} onClick={handleUpdateTask} className='task-update-btn' >update</button>
@@ -24,6 +24,7 @@ const Task = ({title,index }) => {
 };
  Task.propTypes = {
  title: PropTypes.string.isRequired,
+ tagTitle: PropTypes.string,
  index: PropTypes.number
 };
 
