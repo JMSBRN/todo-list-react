@@ -4,7 +4,7 @@ import { Context } from "../context";
 import Tags from "./Tags";
 
 const Tasks = () => {
-  const { tasks, selectValue, sortArrByConditions } = useContext(Context);
+  const { tasks, selectValue, sortArrByConditions, tagText } = useContext(Context);
 
   if(selectValue == 'a-z') {
     sortArrByConditions(tasks, (a,b) => a.tag > b.tag);
@@ -15,7 +15,7 @@ const Tasks = () => {
   return (
     <div className="tasks">
       <Tags />
-      {tasks.map((el, idx) => (
+      {tasks.filter( el => el.tag.includes(tagText) || el.tag == tagText && el.tag.includes('') ).map((el, idx) => (
         <Task tagTitle={el.tag} index={idx} key={idx} title={el.title} />
       ))}
     </div>

@@ -1,17 +1,17 @@
 import { React, useState } from 'react';
-
 import './app.scss';
 import Main from './containers/Main';
 import { Context } from './context';
+import data from './data.json';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(data);
   const [tags, setTags] = useState([]);
   const [title, setTitle] = useState('');
   const [tagTitle, setTagTitle] = useState('');
-  const inputTask = document.querySelector('.input-form');
+  const inputTask = document.getElementById('input-form')||{};
   const [selectValue, setSelectValue] = useState('');
-  
+  const [tagText, setTagText] = useState('');
   const sortArrByConditions = (arr,func) => {
     arr.sort((a, b) => func(a, b)? 1: func(b, a)? -1: 0);
 		return arr;
@@ -33,7 +33,7 @@ function App() {
    let elIndex = JSON.parse(e.target.dataset.num);
     const newArr = tasks.filter((el,index) => index !== elIndex);
     setTasks(newArr);
-    inputTask.value = '';
+    inputTask.value == '';
     if(newArr.length <= 0){
       const arr = [];
       setTags(arr);
@@ -65,9 +65,8 @@ function App() {
   };
   const handleUpdateTask = (e) => {
     let ecurDatasetNum = e.target.dataset.num;
-    console.log(ecurDatasetNum);
     let curValueFromInput = document.querySelector('.input-form').value;
-    if(!inputTask.value == '') {
+    if(!inputTask.value == '' ) {
       tasks[ecurDatasetNum].title = curValueFromInput;
       createTag(e);
     }
@@ -76,10 +75,14 @@ function App() {
   const nandleSelectChange = (e) => {
     setSelectValue(e.target.value);
   };
+  const handelTagkGetText = (e) => {
+    setTagText(e.target.innerHTML);
+	};
   return (
     <div className="App">
       <Context.Provider value={{
         tasks,
+        setTasks,
         tags,
         tagTitle,
         sortArrByConditions,
@@ -89,7 +92,9 @@ function App() {
         handleEditTask,
         handleUpdateTask,
         nandleSelectChange,
-        selectValue
+        selectValue,
+        tagText,
+        handelTagkGetText
       }}>
       <Main />
       </Context.Provider>

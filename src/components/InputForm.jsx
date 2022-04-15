@@ -6,7 +6,7 @@ const InputForm = ({ textInBtn }) => {
 	const {handleAddTask, getTitleFromInput} = useContext(Context);
 	return (
 		<div className='input-form-wrapper'>
-      <input onChange={getTitleFromInput} className='input-form' type="text" name="" id="" placeholder='input task' />
+      <input onChange={getTitleFromInput} className='input-form' type="text" name="input-form" id="input-form" placeholder='input task' />
 			<button onClick={handleAddTask} className='submit-form-btn' type="submit">{textInBtn}</button>
 		</div>
 	);
