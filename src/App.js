@@ -6,6 +6,7 @@ import data from './data.json';
 
 function App() {
  const [tasks, setTasks] = useState(data);
+ const [tags, setTags] = useState([]);
  const [value, setValue] = useState('');
  const [editingMode, setEditingMode] = useState(null);
  const [editText, setEditText] = useState('');
@@ -22,15 +23,20 @@ function App() {
     setTasks(newArr);
   };
  useEffect(() => {
-     const temp = localStorage.getItem('tasks');
-     const tasksFromLocal = JSON.parse(temp);
+     const tempTasks = localStorage.getItem('tasks');
+     const tasksFromLocal = JSON.parse(tempTasks);
+     const tempTags = localStorage.getItem('tags');
+     const tagsFromLocal = JSON.parse(tempTags);
      if(tasksFromLocal){
        setTasks(tasksFromLocal);
+       setTags(tagsFromLocal);
      }
  }, []);
  useEffect(() => {
    const tasksToLocal = JSON.stringify(tasks);
    localStorage.setItem('tasks', tasksToLocal);
+   const tagsToLocal = JSON.stringify(tags);
+   localStorage.setItem('tags', tagsToLocal);
  }, [tasks]);
  const handelSubmit = () => {
    const newArr = [...tasks, {id: new Date().getTime(), tag: '', title: value}];
@@ -50,6 +56,7 @@ function App() {
       if(editText.includes('#')){
         el.title = editText.slice(0, editText.indexOf('#'));
         el.tag = editText.slice(editText.indexOf('#')+ 1, editText.length);
+        setTags([...tags, {id: new Date().getTime(), tagName: el.tag}]);
       }
     }
     return el;
@@ -67,6 +74,7 @@ function App() {
     <div className="App">
       <Context.Provider value={{
         tasks, 
+        tags,
         handelSubmit,
         value,
         setValue,
