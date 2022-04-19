@@ -39,7 +39,9 @@ function App() {
   const newArr = [...tasks].map( el => {
     if(el.id === id){
       el.title = editText.slice(0, editText.indexOf('#'));
-      el.tag = editText.slice(editText.indexOf('#')+ 1, editText.length);
+      if(editText.includes('#')){
+        el.tag = editText.slice(editText.indexOf('#')+ 1, editText.length);
+      }
     }
     return el;
   });
@@ -48,7 +50,10 @@ function App() {
   setEditingMode(null);
   setEditText('');
  };
-
+ const editTask = (id, value) => {
+  setEditingMode(id);
+  setEditText(value);
+ };
   return (
     <div className="App">
       <Context.Provider value={{
@@ -60,7 +65,7 @@ function App() {
         editText, 
         setEditText,
         editingMode,
-        setEditingMode,
+        editTask,
         updateTask,
       }}>
       <Main />

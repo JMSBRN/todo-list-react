@@ -4,7 +4,7 @@ import { Context } from '../context';
 import Tag from './Tag';
 
 const Task = ({id, index, title, tagText }) => {
-	const {deleteTask, setEditingMode, editingMode, editText, setEditText, updateTask} = useContext(Context);
+	const {deleteTask, editTask, editingMode, editText, setEditText, updateTask} = useContext(Context);
 	const toggleTitleLine = (e)=> {
 		if(e.target){
       e.target.classList.toggle('strike');
@@ -21,7 +21,7 @@ const Task = ({id, index, title, tagText }) => {
 			): (<div onClick={toggleTitleLine} className="title">{title}</div>
 			)}
 			<div className="task-btns-wrapper">
-				<button onClick={() => setEditingMode(id) } className='task-edit-btn' >Edit</button>
+				<button onClick={() => editTask(id, title) } className='task-edit-btn' >Edit</button>
 				<button onClick={() => deleteTask(index)} className='task-del-btn' >Delete</button>
 			</div>
 		</div>
