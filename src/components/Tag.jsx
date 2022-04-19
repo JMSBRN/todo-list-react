@@ -1,14 +1,13 @@
 import React from "react";
-
 import PropTypes from "prop-types";
-const Tag = ({ indexForClassName, tagTitle }) => {
+
+const Tag = ({ tagText }) => {
   return <>
-    <div className={`tag-${indexForClassName}`}>{tagTitle}</div>
+    <div className="tag">{tagText}</div>
     </>;
 };
 Tag.propTypes = {
-  indexForClassName: PropTypes.string,
-  tagTitle: PropTypes.string,
+  tagText: PropTypes.string,
 
 };
 
