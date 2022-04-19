@@ -4,12 +4,12 @@ import { Context } from "../context";
 
 const Select = ({ labelTitle}) => {
 
-  const {selectValue  ,nandleSelectChange} = useContext(Context);
+  const {sortValue  ,selectedSort} = useContext(Context);
 
   return (
     <div className="filter">
       <label htmlFor="select-sort-tags">{labelTitle}</label>
-      <select id="select-sort-tags" value={selectValue}  onChange={nandleSelectChange}>
+      <select id="select-sort-tags" value={sortValue}  onChange={selectedSort}>
         <option  >
           --choose an option--
         </option>
