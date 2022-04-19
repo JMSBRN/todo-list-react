@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Context } from '../context';
 import Tag from './Tag';
 
-const Task = ({id, index, title, tagTitle }) => {
+const Task = ({id, index, title, tagText }) => {
 	const {deleteTask, setEditingMode, editingMode, editText, setEditText, updateTask} = useContext(Context);
 	const toggleTitleLine = (e)=> {
 		if(e.target){
@@ -12,10 +12,10 @@ const Task = ({id, index, title, tagTitle }) => {
 	};
 	return (
 		<div className='task'>
-			<Tag tagTitle={tagTitle} />
+			<Tag tagText={tagText} />
 			{editingMode === id? (
 					<>
-					<input onChange={(e) => setEditText(e.target.value)} type="text" value={editText? editText : title } />
+					<input onChange={(e) => setEditText(e.target.value)} type="text" value={editText} />
 					<button onClick={() => updateTask(id)} className='task-update-btn'>update</button>
 					</>
 			): (<div onClick={toggleTitleLine} className="title">{title}</div>
@@ -29,7 +29,7 @@ const Task = ({id, index, title, tagTitle }) => {
 };
  Task.propTypes = {
  title: PropTypes.string.isRequired,
- tagTitle: PropTypes.string,
+ tagText: PropTypes.string,
  index: PropTypes.number,
  id: PropTypes.number
 };

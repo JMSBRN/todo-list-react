@@ -24,9 +24,8 @@ function App() {
    localStorage.setItem('tasks', tasksToLocal);
  }, [tasks]);
  
-
  const handelSubmit = () => {
-   const newArr = [...tasks, {id: new Date().getTime(), title: value}];
+   const newArr = [...tasks, {id: new Date().getTime(), tag: '', title: value}];
    if(!value) return;
    setTasks(newArr);
    setValue('');
@@ -39,10 +38,12 @@ function App() {
  const updateTask = (id) => {
   const newArr = [...tasks].map( el => {
     if(el.id === id){
-      el.title = editText;
+      el.title = editText.slice(0, editText.indexOf('#'));
+      el.tag = editText.slice(editText.indexOf('#')+ 1, editText.length);
     }
     return el;
   });
+
   setTasks(newArr);
   setEditingMode(null);
   setEditText('');
@@ -60,7 +61,7 @@ function App() {
         setEditText,
         editingMode,
         setEditingMode,
-        updateTask
+        updateTask,
       }}>
       <Main />
       </Context.Provider>
