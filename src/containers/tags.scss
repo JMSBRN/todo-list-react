@@ -10,10 +10,10 @@
 	font-size: 12px;
 	border: 1px solid var(--primary-color-grey);
 }
-.tag-wrapper{
+.tags-item{
 	cursor: pointer;
 }
-.tag-wrapper:active{
+.tags-item:active{
 	cursor: pointer;
 	color: red;
 }

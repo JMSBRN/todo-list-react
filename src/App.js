@@ -48,6 +48,9 @@ function App() {
   const newArr = [...tasks];
   newArr.splice(index, 1);
   setTasks(newArr);
+  if(newArr.length <= 0){
+   setTags([]);
+  }
  };
  const updateTask = (id) => {
   const newArr = [...tasks].map( el => {
@@ -61,7 +64,6 @@ function App() {
     }
     return el;
   });
-
   setTasks(newArr);
   setEditingMode(null);
   setEditText('');
@@ -70,10 +72,14 @@ function App() {
   setEditingMode(id);
   setEditText(value);
  };
+ const filteredByTag = (data) => {
+   console.log(data);
+ };
   return (
     <div className="App">
       <Context.Provider value={{
-        tasks, 
+        tasks,
+        filteredByTag,
         tags,
         handelSubmit,
         value,

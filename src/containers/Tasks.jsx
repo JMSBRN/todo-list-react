@@ -5,7 +5,7 @@ import Task from '../components/Task';
 
 const Tasks = () => {
   const {tasks} = useContext(Context);
-
+  
   return (
     <div className="tasks">
       <Tags />
