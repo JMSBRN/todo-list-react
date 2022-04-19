@@ -2,99 +2,49 @@ import { React, useState } from 'react';
 import './app.scss';
 import Main from './containers/Main';
 import { Context } from './context';
-import data from './data.json';
 
 function App() {
-  const [tasks, setTasks] = useState(data);
-  const [tags, setTags] = useState([]);
-  const [title, setTitle] = useState('');
-  const [tagTitle, setTagTitle] = useState('');
-  const inputTask = document.getElementById('input-form')||{};
-  const [selectValue, setSelectValue] = useState('');
-  const [tagText, setTagText] = useState('');
-  const sortArrByConditions = (arr,func) => {
-    arr.sort((a, b) => func(a, b)? 1: func(b, a)? -1: 0);
-		return arr;
+ const [tasks, setTasks] = useState([]);
+ const [value, setValue] = useState('');
+ const [editingMode, setEditingMode] = useState(null);
+ const [editText, setEditText] = useState('');
+
+ const handelSubmit = () => {
+   const newArr = [...tasks, {id: new Date().getTime(), title: value}];
+   if(!value) return;
+   setTasks(newArr);
+   setValue('');
  };
-  const getTitleFromInput = (e)=> {
-    const curTitle = e.target.value;
-     setTitle(curTitle);
-  };
-  const handleAddTask = ()=> {
-    if(inputTask.value !== ''){
-      if(tasks.length < 6){
-        setTasks([...tasks, {tag: '', title: `${title}`}]);
-      }
+ const deleteTask = (index) => {
+  const newArr = [...tasks];
+  newArr.splice(index, 1);
+  setTasks(newArr);
+ };
+ const updateTask = (id) => {
+  const newArr = [...tasks].map( el => {
+    if(el.id === id){
+      el.title = editText;
     }
-    setTitle('');
-    inputTask.value = '';
-  };
-  const handlDeleteTask = (e)=> {
-   let elIndex = JSON.parse(e.target.dataset.num);
-    const newArr = tasks.filter((el,index) => index !== elIndex);
-    setTasks(newArr);
-    inputTask.value == '';
-    if(newArr.length <= 0){
-      const arr = [];
-      setTags(arr);
-    }
-  };
-  const handleEditTask = (e) => {
-    let elIndex = JSON.parse(e.target.dataset.num);
-    tasks[elIndex].title;
-    inputTask.value = tasks[elIndex].title;
-  };
-  const uniqArrByPropName = (data, key) =>{
-  return [...new Map(data.map(el => [key(el), el])).values()];
-  };
-  const createTag = (e)  => {
-    let elIndexUpdate = e.target.dataset.num;
-    let currentTag = document.querySelector(`.tag-${elIndexUpdate}`);
-    document.querySelector(`.title-${elIndexUpdate}`).textContent = title;
-    if (title.includes('#')){
-     const tagName =[...title].slice(([...title].findIndex(el => el === '#') + 1), title.length).join('');
-      currentTag.textContent = tagName;
-      const currArrTags = [...tags, {tagName: `${tagName}`}];
-      const uniqArr = uniqArrByPropName(currArrTags, it => it.tagName);
-      setTags(uniqArr);
-      setTagTitle(tagName);  
-      setTasks(tasks.map((el,i) => i == elIndexUpdate ? {...el, tag: `${tagName}` } : el));  
-    } else if(!title.includes('#')){
-      currentTag.textContent = '';
-    }
-  };
-  const handleUpdateTask = (e) => {
-    let ecurDatasetNum = e.target.dataset.num;
-    let curValueFromInput = document.querySelector('.input-form').value;
-    if(!inputTask.value == '' ) {
-      tasks[ecurDatasetNum].title = curValueFromInput;
-      createTag(e);
-    }
-    inputTask.value = '';
-  };
-  const nandleSelectChange = (e) => {
-    setSelectValue(e.target.value);
-  };
-  const handelTagkGetText = (e) => {
-    setTagText(e.target.innerHTML);
-	};
+    return el;
+  });
+  setTasks(newArr);
+  setEditingMode(null);
+  setEditText('');
+ };
+
   return (
     <div className="App">
       <Context.Provider value={{
-        tasks,
-        setTasks,
-        tags,
-        tagTitle,
-        sortArrByConditions,
-        handleAddTask,
-        getTitleFromInput,
-        handlDeleteTask,
-        handleEditTask,
-        handleUpdateTask,
-        nandleSelectChange,
-        selectValue,
-        tagText,
-        handelTagkGetText
+        tasks, 
+        handelSubmit,
+        value,
+        setValue,
+        deleteTask,
+        editText, 
+        setEditText,
+        editingMode,
+        setEditingMode,
+        updateTask
       }}>
       <Main />
       </Context.Provider>

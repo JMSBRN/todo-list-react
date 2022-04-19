@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
-import Task from "../components/Task";
 import { Context } from "../context";
 import Tags from "./Tags";
+import Task from '../components/Task';
 
 const Tasks = () => {
-  const { tasks, selectValue, sortArrByConditions, tagText } = useContext(Context);
+  const {tasks} = useContext(Context);
 
-  if(selectValue == 'a-z') {
-    sortArrByConditions(tasks, (a,b) => a.tag > b.tag);
-  }else if (selectValue == 'z-a') {
-    sortArrByConditions(tasks, (a,b) => a.tag < b.tag);
-  }
+  // if(selectValue == 'a-z') {
+  //   sortArrByConditions(tasks, (a,b) => a.tag > b.tag);
+  // }else if (selectValue == 'z-a') {
+  //   sortArrByConditions(tasks, (a,b) => a.tag < b.tag);
+  // }
 
   return (
     <div className="tasks">
       <Tags />
-      {tasks.filter( el => el.tag.includes(tagText) || el.tag == tagText && el.tag.includes('') ).map((el, idx) => (
-        <Task tagTitle={el.tag} index={idx} key={idx} title={el.title} />
-      ))}
+     {tasks.map((el, index) => 
+      <Task id={el.id} index={index} key={el.id} title={el.title} />
+      )}
     </div>
   );
 };

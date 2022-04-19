@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Context } from '../context';
 import Tag from './Tag';
 
-const Task = ({title,index, tagTitle }) => {
-	const {handlDeleteTask, handleEditTask, handleUpdateTask} = useContext(Context);
+const Task = ({id, index, title, tagTitle }) => {
+	const {deleteTask, setEditingMode, editingMode, editText, setEditText, updateTask} = useContext(Context);
 	const toggleTitleLine = (e)=> {
 		if(e.target){
       e.target.classList.toggle('strike');
@@ -12,12 +12,16 @@ const Task = ({title,index, tagTitle }) => {
 	};
 	return (
 		<div className='task'>
-			<Tag tagTitle={tagTitle} indexForClassName={JSON.stringify(index)}/>
-			<div onClick={toggleTitleLine} className={`title-${index}`}>{title}</div>
+			<Tag tagTitle={tagTitle} />
+			{editingMode === id? (
+					<input onChange={(e) => setEditText(e.target.value)} type="text" value={editText}/>
+			): (
+				<div onClick={toggleTitleLine} className="title">{title}</div>
+			)}
 			<div className="task-btns-wrapper">
-				<button data-num={index} onClick={handleUpdateTask} className='task-update-btn' >update</button>
-				<button data-num={index} onClick={handleEditTask} className='task-edit-btn' >Edit</button>
-				<button data-num={index} onClick={handlDeleteTask} className='task-del-btn' >Delete</button>
+				<button onClick={() => updateTask(id)} className='task-update-btn' >update</button>
+				<button onClick={() => setEditingMode(id) } className='task-edit-btn' >Edit</button>
+				<button onClick={() => deleteTask(index)} className='task-del-btn' >Delete</button>
 			</div>
 		</div>
 	);
@@ -25,7 +29,8 @@ const Task = ({title,index, tagTitle }) => {
  Task.propTypes = {
  title: PropTypes.string.isRequired,
  tagTitle: PropTypes.string,
- index: PropTypes.number
+ index: PropTypes.number,
+ id: PropTypes.number
 };
 
 export default Task;
