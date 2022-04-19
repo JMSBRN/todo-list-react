@@ -14,12 +14,13 @@ const Task = ({id, index, title, tagTitle }) => {
 		<div className='task'>
 			<Tag tagTitle={tagTitle} />
 			{editingMode === id? (
-					<input onChange={(e) => setEditText(e.target.value)} type="text" value={editText}/>
-			): (
-				<div onClick={toggleTitleLine} className="title">{title}</div>
+					<>
+					<input onChange={(e) => setEditText(e.target.value)} type="text" value={editText? editText : title } />
+					<button onClick={() => updateTask(id)} className='task-update-btn'>update</button>
+					</>
+			): (<div onClick={toggleTitleLine} className="title">{title}</div>
 			)}
 			<div className="task-btns-wrapper">
-				<button onClick={() => updateTask(id)} className='task-update-btn' >update</button>
 				<button onClick={() => setEditingMode(id) } className='task-edit-btn' >Edit</button>
 				<button onClick={() => deleteTask(index)} className='task-del-btn' >Delete</button>
 			</div>
