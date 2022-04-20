@@ -4,12 +4,11 @@ import Tags from "./Tags";
 import Task from '../components/Task';
 
 const Tasks = () => {
-  const {tasks} = useContext(Context);
-  
+  const {filtered} = useContext(Context);
   return (
     <div className="tasks">
       <Tags />
-     {tasks.map((el, index) => 
+     {filtered.map((el, index) => 
       <Task tagText={el.tag} id={el.id} index={index} key={el.id} title={el.title} />
       )}
     </div>

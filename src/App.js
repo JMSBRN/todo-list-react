@@ -11,6 +11,8 @@ function App() {
  const [editingMode, setEditingMode] = useState(null);
  const [editText, setEditText] = useState('');
  const [sortValue, setSortValue] = useState('');
+//  const [tagTitle, setTagTitle] = useState('all');
+ const [filtered, setFiltered] = useState([]);
  
   const selectedSort = (e) => {
     setSortValue(e.target.value);
@@ -72,14 +74,22 @@ function App() {
   setEditingMode(id);
   setEditText(value);
  };
- const filteredByTag = (data) => {
-   console.log(data);
+ const setAllTags = () => {
+   setFiltered(tasks);
  };
+ const getTagTitleFromTags = (id) => {
+   const filteredArr = tasks.filter(el => {
+     return el.tag === id && el.title !== '';
+   });
+   setFiltered(filteredArr);
+ };
+
   return (
     <div className="App">
       <Context.Provider value={{
         tasks,
-        filteredByTag,
+        filtered,
+        getTagTitleFromTags,
         tags,
         handelSubmit,
         value,
@@ -91,7 +101,8 @@ function App() {
         editTask,
         updateTask,
         selectedSort,
-        sortValue
+        sortValue,
+        setAllTags
       }}>
       <Main />
       </Context.Provider>

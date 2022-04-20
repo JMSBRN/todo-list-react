@@ -2,12 +2,15 @@ import React, { useContext } from 'react';
 import { Context } from '../context';
 
 const Tags = () => {
-	const {tags, filteredByTag} = useContext(Context);
+	const {tags, getTagTitleFromTags, setAllTags} = useContext(Context);
 	return (
 		<div className='tags'>
-			{tags.map( el => 
-				<div onClick={() => filteredByTag(el.tagName)} key={el.id} className="tags-item">{el.tagName}</div>
-				)}
+			<div className="tags-wrapper">
+				{tags.map( el =>
+					<button onClick={() => getTagTitleFromTags(el.tagName)} key={el.id} className="tags-item">{el.tagName}</button>
+					)}
+			</div>
+				<button className='all-tags-btn' onClick={setAllTags}>all Tasks</button>
 		</div>
 	);
 };
