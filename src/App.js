@@ -10,7 +10,7 @@ function App() {
  const [editingMode, setEditingMode] = useState(null);
  const [editText, setEditText] = useState('');
  const [sortValue, setSortValue] = useState('a-z');
- const [filtered, setFiltered] = useState(JSON.parse(localStorage.getItem('tasks')));
+ const [filtered, setFiltered] = useState(JSON.parse(localStorage.getItem('tasks'))?data: data);
  const tagFromtEditTextInput = editText.slice(editText.indexOf('#')+ 1, editText.length);
  const titleFromEditTextInput = editText.slice(0, editText.indexOf('#'));
 
