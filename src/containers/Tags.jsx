@@ -6,8 +6,8 @@ const Tags = () => {
 	return (
 		<div className='tags'>
 			<div className="tags-wrapper">
-				{tags.map( el =>
-					<button onClick={() => getTagTitleFromTags(el.tagName)} key={el.id} className="tags-item">{el.tagName}</button>
+				{tags.map( (el,idx) =>
+					<button onClick={() => getTagTitleFromTags(el.tagName)} key={idx} className="tags-item">{el.tagName}</button>
 					)}
 			</div>
 				<button className='all-tags-btn' onClick={setAllTags}>all Tasks</button>

@@ -2,17 +2,16 @@ import { React, useEffect, useState } from 'react';
 import './app.scss';
 import Main from './containers/Main';
 import { Context } from './context';
-import data from './data.json';
 
 function App() {
- const [tasks, setTasks] = useState(data);
+ const [tasks, setTasks] = useState([]);
  const [tags, setTags] = useState([]);
  const [value, setValue] = useState('');
  const [editingMode, setEditingMode] = useState(null);
  const [editText, setEditText] = useState('');
  const [sortValue, setSortValue] = useState('');
 //  const [tagTitle, setTagTitle] = useState('all');
- const [filtered, setFiltered] = useState([]);
+ const [filtered, setFiltered] = useState(JSON.parse(localStorage.getItem('tasks')));
  
   const selectedSort = (e) => {
     setSortValue(e.target.value);
@@ -39,6 +38,7 @@ function App() {
    localStorage.setItem('tasks', tasksToLocal);
    const tagsToLocal = JSON.stringify(tags);
    localStorage.setItem('tags', tagsToLocal);
+   setFiltered(tasks);
  }, [tasks]);
  const handelSubmit = () => {
    const newArr = [...tasks, {id: new Date().getTime(), tag: '', title: value}];
@@ -54,6 +54,7 @@ function App() {
    setTags([]);
   }
  };
+
  const updateTask = (id) => {
   const newArr = [...tasks].map( el => {
     if(el.id === id){
@@ -61,7 +62,7 @@ function App() {
       if(editText.includes('#')){
         el.title = editText.slice(0, editText.indexOf('#'));
         el.tag = editText.slice(editText.indexOf('#')+ 1, editText.length);
-        setTags([...tags, {id: new Date().getTime(), tagName: el.tag}]);
+        setTags([...tags, {tagName: el.tag}]);
       }
     }
     return el;
