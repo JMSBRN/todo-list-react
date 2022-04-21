@@ -7,8 +7,7 @@ const Tag = ({ tagText }) => {
     </>;
 };
 Tag.propTypes = {
-  tagText: PropTypes.string,
-
+ tagText: PropTypes.string,
 };
 
 export default Tag;

@@ -2,6 +2,7 @@
 	position: relative;
 	margin: 10px auto;
 	width: 95%;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -31,4 +32,15 @@
 .task-edit-btn:active, 
 .task-update-btn:active {
 	background-color: rgb(255, 255, 255);
+}
+.tag {
+	position: absolute;
+	top: 1px;
+	left: 5px;
+	font-size: 10px;
+	color: grey;
+}
+.tag-edit-mode {
+	display: flex;
+	justify-content: flex-start;
 }

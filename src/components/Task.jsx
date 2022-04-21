@@ -1,27 +1,31 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Context } from '../context';
-import Tag from './Tag';
+import Tag from '../components/Tag';
 
-const Task = ({id, index, title, tagText }) => {
-	const {deleteTask, editTask, editingMode, editText, setEditText, updateTask} = useContext(Context);
+const Task = ({id, index,tagText, title}) => {
+	const {clearTextInputBeForTagName, deleteTask, editTask, editingMode, editText, setEditText, updateTask} = useContext(Context);
 	const toggleTitleLine = (e)=> {
 		if(e.target){
       e.target.classList.toggle('strike');
 		}
 	};
+
 	return (
 		<div className='task'>
 			<Tag tagText={tagText} />
 			{editingMode === id? (
 					<>
-					<input onChange={(e) => setEditText(e.target.value)} type="text" value={editText} />
+					<div className="edit-text-wrapper">
+						<input onChange={(e) => setEditText(e.target.value)} type="text" value={editText} />
+						<div className="tag-edit-mode">{clearTextInputBeForTagName()}</div>
+					</div>
 					<button onClick={() => updateTask(id)} className='task-update-btn'>update</button>
 					</>
 			): (<div onClick={toggleTitleLine} className="title">{title}</div>
 			)}
 			<div className="task-btns-wrapper">
-				<button onClick={() => editTask(id, title) } className='task-edit-btn' >Edit</button>
+				<button onClick={() => editTask(id, title)} className='task-edit-btn' >Edit</button>
 				<button onClick={() => deleteTask(index)} className='task-del-btn' >Delete</button>
 			</div>
 		</div>

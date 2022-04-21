@@ -11,6 +11,8 @@ function App() {
  const [editText, setEditText] = useState('');
  const [sortValue, setSortValue] = useState('a-z');
  const [filtered, setFiltered] = useState(JSON.parse(localStorage.getItem('tasks')));
+ const tagFromtEditTextInput = editText.slice(editText.indexOf('#')+ 1, editText.length);
+ const titleFromEditTextInput = editText.slice(0, editText.indexOf('#'));
 
   const selectedSort = (e) => {
     setSortValue(e.target.value);
@@ -65,8 +67,8 @@ function App() {
     if(el.id === id){
       el.title = editText;
       if(editText.includes('#')){
-        el.title = editText.slice(0, editText.indexOf('#'));
-        el.tag = editText.slice(editText.indexOf('#')+ 1, editText.length);
+        el.title = titleFromEditTextInput;
+        el.tag = tagFromtEditTextInput;
         setTags([...tags, {tagName: el.tag}]);
       }
     }
@@ -89,7 +91,13 @@ function App() {
    });
    setFiltered(filteredArr);
  };
-
+ const clearTextInputBeForTagName = () =>{
+  if(editText === tagFromtEditTextInput){
+    return '';
+  }else {
+    return `create-tag: ${tagFromtEditTextInput}`;
+  }
+};
   return (
     <div className="App">
       <Context.Provider value={{
@@ -108,7 +116,8 @@ function App() {
         updateTask,
         selectedSort,
         sortValue,
-        setAllTags
+        setAllTags,
+        clearTextInputBeForTagName,
       }}>
       <Main />
       </Context.Provider>
