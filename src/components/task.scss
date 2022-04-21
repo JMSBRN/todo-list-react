@@ -2,11 +2,11 @@
 	position: relative;
 	margin: 10px auto;
 	width: 95%;
-	height: 70px;
+	height: auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 10px;
+	padding: 20px 10px;
 	font-size: 15px;
 	border: 1px solid var(--primary-color-grey);
 }
@@ -38,9 +38,34 @@
 	top: 1px;
 	left: 5px;
 	font-size: 10px;
-	color: grey;
+	color: var(--primary-color-grey);
 }
+
 .tag-edit-mode {
 	display: flex;
 	justify-content: flex-start;
+}
+.ul-tags {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	list-style: none;
+	font-size: 14px;
+	color: var(--primary-color-grey);
+}
+.ul-tags li:hover {
+	color: rgb(33, 180, 52);
+	cursor: pointer;
+}
+
+.ul-tags li:active {
+	color: rgb(189, 86, 86);
+	cursor: pointer;
+}
+
+li:nth-child(even) {
+	color: rgb(80, 184, 54);
+}
+li:nth-child(odd) {
+	color: rgb(59, 116, 223);
 }
