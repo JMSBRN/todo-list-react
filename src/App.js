@@ -2,9 +2,9 @@ import { React, useEffect, useState } from 'react';
 import './app.scss';
 import Main from './containers/Main';
 import { Context } from './context';
-
+import data from './data.json';
 function App() {
- const [tasks, setTasks] = useState([]);
+ const [tasks, setTasks] = useState(data);
  const [tags, setTags] = useState([]);
  const [value, setValue] = useState('');
  const [editingMode, setEditingMode] = useState(null);
@@ -46,12 +46,19 @@ function App() {
    setValue('');
  };
  const deleteTask = (index) => {
+  deleteTagFromTagsBytask(index);
   const newArr = [...tasks];
   newArr.splice(index, 1);
   setTasks(newArr);
   if(newArr.length <= 0){
    setTags([]);
   }
+ };
+ const deleteTagFromTagsBytask = (index) => {
+   const tagNameIntask = tasks[index].tag;
+   if((tasks.filter(el => tagNameIntask == el.tag)).length === 1){
+     setTags(tags.filter( el => el.tagName !== tagNameIntask));
+   }
  };
  const updateTask = (id) => {
   const newArr = [...tasks].map( el => {
