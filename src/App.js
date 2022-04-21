@@ -9,7 +9,7 @@ function App() {
  const [value, setValue] = useState('');
  const [editingMode, setEditingMode] = useState(null);
  const [editText, setEditText] = useState('');
- const [sortValue, setSortValue] = useState('');
+ const [sortValue, setSortValue] = useState('a-z');
  const [filtered, setFiltered] = useState(JSON.parse(localStorage.getItem('tasks')));
 
   const selectedSort = (e) => {
