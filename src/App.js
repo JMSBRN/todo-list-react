@@ -11,7 +11,7 @@ function App() {
  const [editText, setEditText] = useState('');
  const [sortValue, setSortValue] = useState('');
  const [filtered, setFiltered] = useState(JSON.parse(localStorage.getItem('tasks')));
- 
+
   const selectedSort = (e) => {
     setSortValue(e.target.value);
     const newArr = tasks;
@@ -35,8 +35,7 @@ function App() {
  useEffect(() => {
    const tasksToLocal = JSON.stringify(tasks);
    localStorage.setItem('tasks', tasksToLocal);
-   const uniqueTags =	tags.filter((item, pos, self) => self.findIndex(v => v.tag === item.tag) === pos);
-   const tagsToLocal = JSON.stringify(uniqueTags);
+   const tagsToLocal = JSON.stringify(tags);
    localStorage.setItem('tags', tagsToLocal);
    setFiltered(tasks);
  }, [tasks]);
