@@ -7,7 +7,7 @@ const Select = ({ labelTitle}) => {
   const {sortValue, selectedSort} = useContext(Context);
 
   return (
-    <div className="filter">
+    <div className="select-sort-wrapper">
       <label htmlFor="select-sort-tags">{labelTitle}</label>
       <select id="select-sort-tags" value={sortValue}  onChange={selectedSort}>
         <option value="a-z">a-z</option>
